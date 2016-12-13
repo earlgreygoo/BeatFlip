@@ -74,14 +74,14 @@ const ACTIONS = {
 				})
 	},
 
-	submitTrack: function(trackObject){
+	submitTrack: function(trackObject, challId){
 		var t = new TrackModel()
 		t.save(trackObject)
 		 .then(
 		 	function(resp) {
 		 		alert('track posted!')
 		 		console.log(resp)
-		 		return resp
+		 		ACTIONS.saveSubmission(challId,resp._id)
 		 	},
 		 	function(err){
 		 		alert('could not post track')
@@ -90,11 +90,13 @@ const ACTIONS = {
 	},
 
 	saveSubmission: function(challengeId, trackId) {
+		var u = User.getCurrentUser()
 	 	var submission = JSON.parse(u.get('submissions'))
 	 	submission[challengeId] = trackId
 	 	u.set({
-			submissions: JSON.stringify(submissions)
+			submissions: JSON.stringify(submission)
 		 })
+	 	console.log(u)
 	 	u.save().then((resp)=>console.log(resp))
 	},
 

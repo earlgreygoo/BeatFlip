@@ -46,11 +46,12 @@ const Challenges = React.createClass({
 		console.log(this.props.collection)
 		return (
 			<div className="challenges-container">
-				<div className="active"> Active Challenges 
+				 <h4> Active Challenges </h4>
+				<div className="active">
 					{this.props.collection.filter((model)=> model.attributes.isActive).map(challengeModel=> <Challenge model={challengeModel} />)}
 				</div> 
-
-				<div className="inactive"> Challenges that are no longer active, but you can still check 'em out if youl'd like to 
+				<h4> Old Challenges </h4>
+				<div className="inactive"> 
 					{this.props.collection.filter((model)=> !model.attributes.isActive).map(challengeModel=> <Challenge model={challengeModel} />)}
 				</div>
 			</div>

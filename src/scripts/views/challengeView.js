@@ -88,6 +88,9 @@ const Submit = React.createClass({
 				challengeId:    this.props.id,
 				votes:          0
 			}
+			ACTIONS.submitTrack(trackInfo,this.props.id)
+
+			//.then((resp)=> Actions.saveSubmission(this.props.id, resp._id))
 			//var u = User.getCurrentUser()
 			//var promise = ACTIONS.submitTrack(trackInfo)
 			//promise.then((resp) => {
@@ -162,7 +165,7 @@ const Track = React.createClass({
 				<h2> {this.props.model.attributes.title} </h2>
 				<a href={this.props.model.attributes.link}> check it out! </a>
 				<div className= 'vote-box'>
-					<input type='checkbox' onClick={this._vote4} />
+					<i className="fa fa-star-o" aria-hidden="true"></i>
 				</div>
 			</div>
 			)
