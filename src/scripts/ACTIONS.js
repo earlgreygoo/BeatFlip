@@ -81,14 +81,45 @@ const ACTIONS = {
 		 	function(resp) {
 		 		alert('track posted!')
 		 		console.log(resp)
+		 		return resp
 		 	},
 		 	function(err){
 		 		alert('could not post track')
 		 		console.log(err)
 		 	})
-	}
+	},
+
+	saveSubmission: function(challengeId, trackId) {
+	 	var submission = JSON.parse(u.get('submissions'))
+	 	submission[challengeId] = trackId
+	 	u.set({
+			submissions: JSON.stringify(submissions)
+		 })
+	 	u.save().then((resp)=>console.log(resp))
+	},
+
 
 	
 }
+
+// ADD to tracksLiked so that you can vote on multiple challenges
+// very similar for adding a submission.
+
+// var u = User.getCurrentUser()
+
+// u.saveSubmission(challengeId,trackId)
+
+// var tracksLiked = JSON.parse(u.get('tracksLiked'))
+
+// tracksLiked[challengeId] = tracksLiked
+
+// u.set({
+// 	tracksLiked: JSON.stringify(tracksLiked)
+// })
+
+// u.save().then((resp)=>console.log(resp))
+
+
+
 
 export default ACTIONS

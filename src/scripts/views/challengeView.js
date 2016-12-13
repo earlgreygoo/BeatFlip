@@ -40,7 +40,7 @@ const ChallengeView = React.createClass({
 			<div className='challenge-page'>
 				<Header />
 				<ChallengeDetails model={this.state.currentChallenge} /> 
-				<Submit visible={this.state.submissionWindowVisible} />
+				<Submit visible={this.state.submissionWindowVisible} id={this.props.id}/>
 				<Tracks collection={this.state.currentTracks} e />
 
 			</div>
@@ -68,36 +68,32 @@ const ChallengeDetails = React.createClass({
 				<h1> {challenge.get('title')} </h1>
 				<p> {challenge.get('details')} </p>
 				<button onClick={this._toggleSubmit}> Submit a Track! </button> 
-				<TimeRemaining deadline={challenge.get('deadline')} />
 			</div>
 			)
 	}
 })
 
-const TimeRemaining = React.createClass({
 
-	render: function() {
-		return (
-		<div> stuff	</div>
-		)
-	}
-})
 
 const Submit = React.createClass({
 
 		_submitTrack: function(eventObj) {
+
 			eventObj.preventDefault()
 
 			var trackInfo = {
 				title:    		eventObj.target.title.value,  
 				link:     		eventObj.target.URL.value,
 				description:    (eventObj.target.description.value ? eventObj.target.description.value : ""),
-				challengeId:    "",
+				challengeId:    this.props.id,
 				votes:          0
 			}
-
-			ACTIONS.submitTrack(trackInfo)
-
+			var u = User.getCurrentUser()
+			var promise = ACTIONS.submitTrack(trackInfo)
+			promise.then((resp) => {
+				console.log(resp)
+				Actions.saveSubmission(this.props.id, resp)
+			})
 		},
 
 	
@@ -110,7 +106,7 @@ const Submit = React.createClass({
 		    }
 
 
-			console.log(this.props.visible)
+			console.log(User.getCurrentUser())
 
 			return (
 				

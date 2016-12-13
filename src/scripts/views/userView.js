@@ -47,7 +47,7 @@ const Userinfo = React.createClass({
 		console.log(this.props.model)
 		return (
 			<div className="user">
-				<h3> hi {this.props.model.attributes.email} </h3>
+				<h3> Hi {this.props.model.attributes.username} </h3>
 				<p> your current score is </p>
 				<h4> {this.props.model.attributes.score}</h4>
 
@@ -65,7 +65,7 @@ const SubmittedTracks = React.createClass({
 			<div className="submissionContainer">
 				<h1> Submissions </h1> 
 				<h3> {!this.props.model[0] ? "Looks Like you haven't submitted anything yet :( " : "" } </h3>
-				
+
 
 			</div>
 			)

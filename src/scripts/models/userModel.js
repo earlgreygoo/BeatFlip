@@ -85,11 +85,48 @@ const User = UserAuthModel.extend({
 			})
 	},
 
+	saveSubmission(trackId,challengeId){
+		return $.ajax({
+			method: 'PUT',
+			type: 'json',
+			url: '/api/users/'+ this.get('_id'),
+			data: {
+				submissions: {
+					[challengeId]: trackId
+				}
+			}
+		}).then(
+			(userData) => {
+				this.set(userData)
+			},
+			(err) => {
+				throw new Error(err.responseText)
+			})
+	},
+
 	syncWithLocalStorage: function() {
 		console.log('syncing under name', app_name + '_user')
 		localStorage.setItem(app_name + '_user',JSON.stringify(this.attributes))
 	}
 })
+
+
+// ADD to tracksLiked so that you can vote on multiple challenges
+// very similar for adding a submission.
+
+// var u = User.getCurrentUser()
+
+// u.saveSubmission(challengeId,trackId)
+
+// var tracksLiked = JSON.parse(u.get('tracksLiked'))
+
+// tracksLiked[challengeId] = tracksLiked
+
+// u.set({
+// 	tracksLiked: JSON.stringify(tracksLiked)
+// })
+
+// u.save().then((resp)=>console.log(resp))
 
 
 export default User

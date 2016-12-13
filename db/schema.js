@@ -10,8 +10,8 @@ const usersSchema = new mongoose.Schema({
   avatar:      { type: String, required: false, default: "../src/ASSETS/rec.png"},
   createdAt:   { type: Date, default: Date.now },
   score:       { type: Number, default: 0},
-  submissions: {type: Array, default: [{}]},
-  tracksLiked: {type: Array, default: [{}]},
+  submissions: {type: String, default: ""},
+  tracksLiked: {type: String, default: ""},
   admin:       {type: Boolean, default: false}
 })
 
