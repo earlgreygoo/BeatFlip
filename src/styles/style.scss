@@ -3,8 +3,13 @@
 	box-sizing: border-box;
 }
 
-h1 {
-	font-size: 300px;
-	text-align: center;
-	color: fuchsia;
+
+body {
+	background: linear-gradient(to bottom right, lightblue, pink) fixed;
+
+	.challenge {
+		background: linear-gradient(to bottom right, pink, white);
+		width: 70%;
+		height: 4rem;
+	}
 }

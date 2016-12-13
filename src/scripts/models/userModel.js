@@ -52,7 +52,7 @@ UserAuthModel.logout = function() {
 }
 
 UserAuthModel.getCurrentUser = function() {
-	return localStorage[app_name + '_user'] ? JSON.parse(localStorage[app_name + '_user']) : null
+	return JSON.parse(localStorage[app_name + '_user']) ? new User(JSON.parse(localStorage[app_name + '_user'])) : null
 }
 
 
@@ -62,8 +62,34 @@ UserAuthModel.getCurrentUser = function() {
 // but, you may extend the UserAuthModel Constructor (which is a Backbone Model)
 const User = UserAuthModel.extend({
 	initialize: function(){
+		this.on('change',this.syncWithLocalStorage.bind(this))
+	},
 
+	saveVote: function(trackId,challengeId){
+		console.log("saving vote", this.get('_id'),trackId, this.get('tracksLiked')[0])
+		return $.ajax({
+			method: 'PUT',
+			type: 'json',
+			url: '/api/users/'+ this.get('_id'),
+			data: {
+				tracksLiked: {
+					[challengeId]: trackId
+				}
+			}
+		}).then(
+			(userData) => {
+				this.set(userData)
+			},
+			(err) => {
+				throw new Error(err.responseText)
+			})
+	},
+
+	syncWithLocalStorage: function() {
+		console.log('syncing under name', app_name + '_user')
+		localStorage.setItem(app_name + '_user',JSON.stringify(this.attributes))
 	}
 })
+
 
 export default User
