@@ -18,6 +18,7 @@ module.exports = {
       } else {
         mongoose.connect(process.env.MONGODB_URI , (err, db)=>{
           if (err) {
+            console.log(process.env.MONGODB_URI)
             console.log(err)
           }
           else {
