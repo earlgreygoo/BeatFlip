@@ -88,12 +88,12 @@ const Submit = React.createClass({
 				challengeId:    this.props.id,
 				votes:          0
 			}
-			var u = User.getCurrentUser()
-			var promise = ACTIONS.submitTrack(trackInfo)
-			promise.then((resp) => {
-				console.log(resp)
-				Actions.saveSubmission(this.props.id, resp)
-			})
+			//var u = User.getCurrentUser()
+			//var promise = ACTIONS.submitTrack(trackInfo)
+			//promise.then((resp) => {
+			//	console.log(resp)
+			//	Actions.saveSubmission(this.props.id, resp)
+			//})
 		},
 
 	
