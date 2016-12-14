@@ -6,7 +6,23 @@
 
 
 body {
+
 	background: linear-gradient(to bottom right, lightblue, pink) fixed;
+
+
+
+	.btn {
+		background: #F7C3CE;
+		border-color: #F7C3CE;
+	}
+
+	.well {
+		background-color: rgba(245,245,245,.6)
+	}
+
+	h1{
+		font-family: 'Archivo Black', sans-serif;
+	}
 
 	.challenge {
 		background: linear-gradient(to bottom right, pink, white);

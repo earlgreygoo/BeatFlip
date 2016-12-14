@@ -39,7 +39,7 @@ const trackSchema = new mongoose.Schema({
   link:        {type: String, required: true},
   description: {type: String, required: false},
   challengeId: {type: String, required: true},
-  votes:       {type: Number, default: 0}
+  votes:       {type: Number, default: 1}
 
 })
 

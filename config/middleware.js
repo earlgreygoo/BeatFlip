@@ -18,8 +18,7 @@ const cookifyUser = function(req,res,next) {
     next()
   }
   else {
-    console.log('no user')
-    res.cookie(global.PROJECT_NAME + '_user','null')
+    res.clearCookie(global.PROJECT_NAME + '_user')
     res.cookie('tiy_full_stack_app_name', global.PROJECT_NAME)
     next()
   }

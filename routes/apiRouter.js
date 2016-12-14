@@ -139,6 +139,22 @@ apiRouter
       })
   })
 
+   .put('/tracks/:_id', function(req, res){
+
+      Track.findByIdAndUpdate(req.params._id, req.body, {new: true}, function(err, record){
+          if (err) {
+            res.status(500).send(err)
+          }
+          else if (!record) {
+            res.status(400).send('no record found with that id')
+          }
+          else {
+            res.json(record)
+          }
+      })
+    })
+
+
    .get('/tracks', function(req,res) {
       Track.find(req.query,function(err,records) {
         if (err) {

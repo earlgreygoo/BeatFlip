@@ -112,37 +112,62 @@ const ACTIONS = {
 	 	u.save().then(()=> location.reload())
 	},
 
+	_tallyVote: function(trackId,oldVote) {
+
+
+		var newFave = new TrackCollection()
+		newFave.fetch({
+			data: {
+				_id: trackId
+			}
+		}).then(()=>{
+				// pluck out the *only* model from this collection. that's what you care about here. 
+				console.log(newFave)
+				var currentVotes = newFave.models[0].get('votes')
+				console.log(currentVotes)
+				newFave.models[0].set({
+					votes: (currentVotes + 1)
+				})
+				newFave.models[0].save()
+			})
+
+
+
+		var oldFave = new TrackCollection()
+		oldFave.fetch({
+			data: {
+				_id: oldVote
+			}
+		}).then(()=> {
+				var currentVotes = oldFave.models[0].get('votes')
+				oldFave.models[0].set({
+					votes: (currentVotes - 1)
+				})
+				oldFave.models[0].save()
+			})
+
+	},
+
 	saveVote: function(challengeId,trackId){
+		console.log("saving vote",challengeId,trackId)
 		var u = User.getCurrentUser()
 	 	var likes = u.get('tracksLiked') ? JSON.parse(u.get('tracksLiked')) : {}
+	 	var oldVote = likes[challengeId]
 	 	likes[challengeId] = trackId
 	 	u.set({
 			tracksLiked: JSON.stringify(likes)
 		 })
+	 	STORE._set({
+	 		userVotes: likes
+	 	})
+	 	u.save()
 	 	console.log(u)
-	}
+	 	this._tallyVote(trackId,oldVote)
+	},
 
 
 	
 }
-
-// ADD to tracksLiked so that you can vote on multiple challenges
-// very similar for adding a submission.
-
-// var u = User.getCurrentUser()
-
-// u.saveSubmission(challengeId,trackId)
-
-// var tracksLiked = JSON.parse(u.get('tracksLiked'))
-
-// tracksLiked[challengeId] = tracksLiked
-
-// u.set({
-// 	tracksLiked: JSON.stringify(tracksLiked)
-// })
-
-// u.save().then((resp)=>console.log(resp))
-
 
 
 

@@ -9,8 +9,9 @@ const STORE = _.extend(Backbone.Events, {
 		trackCollection: new TrackCollection(),
 		currentChallenge: new ChallengeModel(),
 		currentTracks: new TrackCollection(),
-		selectedTrack: "",
+		userVotes: {},
 		submissionWindowVisible: false,
+		activeStatus: true
 	},
 
 	_emitChange: function() {

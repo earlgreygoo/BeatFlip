@@ -29,7 +29,6 @@ const HomeView = React.createClass({
 		return STORE._getData()
 	},
 	render: function() {
-		console.log(this.state)
 		return (
 			<div className="home">
 				<Header />
@@ -67,7 +66,7 @@ const Challenge = React.createClass({
 		console.log("rendering challenge", this.props)
 
 		return (
-			<div className="challenge" onClick={()=> location.hash = "challenges/" + thisChallenge._id}>
+			<div className="well well-lg" onClick={()=> location.hash = "challenges/" + thisChallenge._id}>
 				<h1> {thisChallenge.title} </h1> 
 
 			</div>
