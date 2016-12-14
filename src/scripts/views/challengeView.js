@@ -52,10 +52,10 @@ const ChallengeView = React.createClass({
 const ChallengeDetails = React.createClass({
 
 	_toggleSubmit: function() {
-		this.setState(
+		
 			STORE._set({
 				submissionWindowVisible: !(STORE._get('submissionWindowVisible'))
-			}))
+			})
 
 	},
 
@@ -77,9 +77,37 @@ const ChallengeDetails = React.createClass({
 
 const Submit = React.createClass({
 
+		_toggleSubmit: function() {
+			this.setState(
+				STORE._set({
+					submissionWindowVisible: !(STORE._get('submissionWindowVisible'))
+				}))
+
+		},
+
+		_submissionsCheck: function(eventObj) {
+			eventObj.preventDefault()
+
+			var ChallId = this.props.id
+			var subs = JSON.parse(User.getCurrentUser().get('submissions'))
+			if (ChallId in subs) {				
+				var quest = confirm("You can only submit one track per challenge. Do you wish to overwrite previously submmitted track? ")
+				if (quest === true) {
+					var track = subs[ChallId]
+					ACTIONS.deleteTrack(track)
+					this._submitTrack(eventObj)
+				}
+				else {
+					this._toggleSubmit()
+				}
+			}
+			else {
+				this._submitTrack(eventObj)
+			}
+		},
+
 		_submitTrack: function(eventObj) {
 
-			eventObj.preventDefault()
 
 			var trackInfo = {
 				title:    		eventObj.target.title.value,  
@@ -113,7 +141,7 @@ const Submit = React.createClass({
 
 			return (
 				
-				<form className='submission-container' style={displayStyle} onSubmit={this._submitTrack}>
+				<form className='submission-container' style={displayStyle} onSubmit={this._submissionsCheck}>
 					<h2>Post your stuff</h2>
 					<input type="title" 	   name="title" 	   placeholder="title" />
 					<input type="text" 	       name="URL" 		   placeholder="track link" />
@@ -146,9 +174,7 @@ const Track = React.createClass({
 			alert('please login to vote')
 		}
 		else if (User) {
-			console.log(this.props.model.get('_id'))
-			var thisUser = User.getCurrentUser()
-			thisUser.saveVote(this.props.model.get('_id'),)
+			ACTIONS.saveVote
 
 		}
 
@@ -164,7 +190,7 @@ const Track = React.createClass({
 			<div className='track'> 
 				<h2> {this.props.model.attributes.title} </h2>
 				<a href={this.props.model.attributes.link}> check it out! </a>
-				<div className= 'vote-box'>
+				<div className="vote-box"> 
 					<i className="fa fa-star-o" aria-hidden="true"></i>
 				</div>
 			</div>

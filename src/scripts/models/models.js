@@ -14,7 +14,8 @@ export const ChallengeCollection = Backbone.Collection.extend({
 })
 
 export const TrackModel = Backbone.Model.extend({
-	urlRoot: '/api/tracks'
+	urlRoot: '/api/tracks',
+	idAttribute: '_id'
 })
 
 export const TrackCollection = Backbone.Collection.extend({

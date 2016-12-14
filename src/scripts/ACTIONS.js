@@ -36,6 +36,18 @@ const ACTIONS = {
 		})
 	},
 
+	deleteTrack: function(trackId) {
+		
+		var trackCollection = new TrackCollection()
+		trackCollection.fetch({
+			data: {
+				_id: trackId
+			}
+		}).then(()=> { 
+			trackCollection.models[0].destroy()
+		})		
+	},
+
 	login: function(userDataObj) {
 		User.login(userDataObj.email,userDataObj.password)
 			.then(
@@ -91,14 +103,24 @@ const ACTIONS = {
 
 	saveSubmission: function(challengeId, trackId) {
 		var u = User.getCurrentUser()
-	 	var submission = JSON.parse(u.get('submissions'))
-	 	submission[challengeId] = trackId
+	 	var submissions = u.get('submissions') ? JSON.parse(u.get('submissions')) : {}
+	 	submissions[challengeId] = trackId
 	 	u.set({
-			submissions: JSON.stringify(submission)
+			submissions: JSON.stringify(submissions)
 		 })
 	 	console.log(u)
-	 	u.save().then((resp)=>console.log(resp))
+	 	u.save().then(()=> location.reload())
 	},
+
+	saveVote: function(challengeId,trackId){
+		var u = User.getCurrentUser()
+	 	var likes = u.get('tracksLiked') ? JSON.parse(u.get('tracksLiked')) : {}
+	 	likes[challengeId] = trackId
+	 	u.set({
+			tracksLiked: JSON.stringify(likes)
+		 })
+	 	console.log(u)
+	}
 
 
 	
