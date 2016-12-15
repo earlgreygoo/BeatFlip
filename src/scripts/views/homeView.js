@@ -42,7 +42,6 @@ const Challenges = React.createClass({
 	
 
 	render: function() {
-		console.log(this.props.collection)
 		return (
 			<div className="challenges-container">
 				 <h4> Active Challenges </h4>

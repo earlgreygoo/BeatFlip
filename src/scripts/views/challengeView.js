@@ -229,7 +229,7 @@ const Submit = React.createClass({
 						</div>
 						<button className="btn btn-default" type="submit"> Submit </button>
 					</form>
-					<button className="btn btn-default" onCLick={this._toggleSubmit} > Cancel </button>
+					<button className="btn btn-default" onClick={this._toggleSubmit} > Cancel </button>
 				</div>
 				
 				)
@@ -305,7 +305,7 @@ const Track = React.createClass({
 
 
 		return ( 
-			<CassetteTrack model={this.props.model} />
+			<Cassette model={this.props.model} />
 			)
 
 		/*return (

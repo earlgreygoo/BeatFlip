@@ -34,7 +34,6 @@ const Header = React.createClass({
 		}
 	},
 	_profileStyle: function() {
-		console.log(location.hash)
 		if(User.getCurrentUser()) {
 			if(/^#user\/.*/.test(location.hash)) { 
 				return {display: "none"}

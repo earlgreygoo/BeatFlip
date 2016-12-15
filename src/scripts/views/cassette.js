@@ -7,29 +7,53 @@ import STORE from '../STORE'
 const Cassette = React.createClass({ 
 
 
+		getInitialState: function() {
+			return {widget: null}
+		},
+
+		componentDidMount: function() {
+		console.log("aaaaah")
+		//widget.bind(SC.Widget.Events.READY)
+		this.setState({
+			widget: "hahahaha"
+		})
+
+	},
+
+
+	_togglePlay: function(){
+
+		if(this.state.widget) {
+			var iframeElement   = document.querySelector('#hey');
+			var widget = SC.Widget(iframeElement)
+			widget.bind(SC.Widget.Events.READY)
+			widget.toggle()
+		}
+		else{
+			console.log("hold up")
+		}
+	},
+	
+
 	render: function() {
+		console.log(this.props)
 
-		var widget = SC.Widget(this.props.attributes.trackId)
-
-		widget.bind(SC.Widget.Events.READY)
 
 		return (
 			<div className='track'>	
-				<iframe display="none" id={this.props.attributes.trackId}
+				<button onClick={this._togglePlay}> AAAAAAAAH </button>
+      			<iframe display="none" id="hey"
       					src="http://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/252231083&show_artwork=false&liking=false&sharing=false&auto_play=false"
-      					width="420"
-      					height="120"
-      					frameborder="no">
+      					>
       			</iframe>
-
-      			<button onClick={widget.toggle}> play/pause </button> 
-					
 			</div>
 			)
       			}
 
 
 })
+
+
 
 
 
