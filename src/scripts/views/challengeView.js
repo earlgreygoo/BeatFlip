@@ -3,6 +3,7 @@ import ACTIONS from '../ACTIONS'
 import Header from './header'
 import STORE from '../STORE'
 import User from '../models/userModel'
+import Cassette from './cassette'
 
 
 
@@ -71,10 +72,14 @@ const ChallengeDetails = React.createClass({
 
 
 	_toggleSubmit: function() {
-		
-			STORE._set({
-				submissionWindowVisible: !(STORE._get('submissionWindowVisible'))
+		if (User.getCurrentUser()){
+				STORE._set({
+					submissionWindowVisible: !(STORE._get('submissionWindowVisible'))
 			})
+		}
+		else {
+			alert("Create an account to post a track")
+		}
 
 	},
 
@@ -118,7 +123,7 @@ const ChallengeDetails = React.createClass({
 		//this._winCheck()
 		var challenge = this.props.model
 		return (
-			<div className='details-container'>
+			<div className='details-container well'>
 				<h1> {challenge.get('title')} </h1>
 				<p> {challenge.get('details')} </p>
 
@@ -138,6 +143,7 @@ const ChallengeDetails = React.createClass({
 const Submit = React.createClass({
 
 		_toggleSubmit: function() {
+			alert("aaah")
 			this.setState(
 				STORE._set({
 					submissionWindowVisible: !(STORE._get('submissionWindowVisible'))
@@ -151,7 +157,7 @@ const Submit = React.createClass({
 			if (User.getCurrentUser()){
 
 				var ChallId = this.props.id
-				var subs = JSON.parse(User.getCurrentUser().getCurrentUser().get('submissions'))
+				var subs = JSON.parse(User.getCurrentUser().get('submissions'))
 				if (ChallId in subs) {				
 					var quest = confirm("You can only submit one track per challenge. Do you wish to overwrite previously submmitted track? ")
 					if (quest === true) {
@@ -177,7 +183,8 @@ const Submit = React.createClass({
 
 
 			var trackInfo = {
-				title:    		eventObj.target.title.value,  
+				title:    		eventObj.target.title.value,
+				userName:       user.getUser().attributes.username,
 				link:     		eventObj.target.URL.value,
 				description:    (eventObj.target.description.value ? eventObj.target.description.value : ""),
 				challengeId:    this.props.id,
@@ -199,25 +206,37 @@ const Submit = React.createClass({
 
 
 			var	displayStyle = {
-				display: (this.props.visible ? "block" : "none")
+				visibility: (this.props.visible ? "visible" : "hidden")
 		    }
 
 
 
 			return (
-				
-				<form className='submission-container' style={displayStyle} onSubmit={this._submissionsCheck}>
-					<h2>Post your track</h2>
-					<input type="title" 	   name="title" 	   placeholder="title" />
-					<input type="text" 	       name="URL" 		   placeholder="track link" />
-					<input type="description"  name="description"  placeholder="description (optional)" />
-					<button type="submit"> Submit </button> 
-				</form>
+				<div className='submission-container' style={displayStyle}>
+					<form className="track-form well" onSubmit={this._submissionsCheck}>
+						<h2>Post your track</h2>
+						<div className="form-group">
+							<label htmlFor="title"> Track Title </label>
+							<input type="title" className="form-control" name="title" id="title" placeholder="title" />
+						</div>
+						<div className="form-group">
+							<label htmlFor="URL"> Track Link </label>
+							<input type="text" name="URL" className="form-control" id="URL" placeholder="track link" />
+						</div>
+						<div className="form-group">
+							<label htmlFor="description"> Description </label>
+							<input type="description" name="description" className="form-control" id="description" placeholder="description (optional)" />
+						</div>
+						<button className="btn btn-default" type="submit"> Submit </button>
+					</form>
+					<button className="btn btn-default" onCLick={this._toggleSubmit} > Cancel </button>
+				</div>
 				
 				)
 		}
 	
 })
+
 
 			
 const Tracks = React.createClass({
@@ -284,19 +303,22 @@ const Track = React.createClass({
 		var currentTrack = this.props.model.attributes
 		console.log(currentTrack)
 
-		return (
-			<div className='track'> 
-				<h2> {currentTrack.title} </h2>
-				<a href={currentTrack.link}> check it out! </a>
-				<div className="vote-box" onClick={this._vote4}> 
-					{this._voteCheck() ? (
-						<i className="fa fa-star" aria-hidden="true"></i>
-						) : (
-						<i className="fa fa-star-o" aria-hidden="true"></i>
-						)}
-				</div>
-			</div>
+
+		return ( 
+			<CassetteTrack model={this.props.model} />
 			)
+
+		/*return (
+			<div className='track well'> 
+				<h2> {currentTrack.title} </h2> <p> by {currentTrack.userName} </p>
+				<a href={currentTrack.link}> check it out! </a>
+					{this._voteCheck() ? (
+						<i className="fa fa-star fa-2x" aria-hidden="true" onClick={this._vote4}></i>
+						) : (
+						<i className="fa fa-star-o fa-2x" aria-hidden="true" onClick={this._vote4}></i>
+						)}
+			</div>
+			)*/
 	}
 })
 

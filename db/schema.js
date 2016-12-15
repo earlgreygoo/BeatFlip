@@ -10,8 +10,8 @@ const usersSchema = new mongoose.Schema({
   avatar:      { type: String, required: false, default: "../src/ASSETS/rec.png"},
   createdAt:   { type: Date, default: Date.now },
   score:       { type: Number, default: 0},
-  submissions: {type: String, default: ""},
-  tracksLiked: {type: String, default: ""},
+  submissions: {type: String, default: "{}"},
+  tracksLiked: {type: String, default: "{}"},
   admin:       {type: Boolean, default: false}
 })
 
@@ -37,9 +37,11 @@ const challengeSchema = new mongoose.Schema({
 const trackSchema = new mongoose.Schema({
   title:       {type:String, required: true},
   link:        {type: String, required: true},
+  user:        {type: String, required: true},
   description: {type: String, required: false},
   challengeId: {type: String, required: true},
-  votes:       {type: Number, default: 1}
+  votes:       {type: Number, default: 1},
+  tapeRoute:   {type: String, default: ""}
 
 })
 

@@ -19,6 +19,7 @@ var LoginView = React.createClass({
 var Register = React.createClass({
 	_handleSubmit: function(eventObj) {
 		eventObj.preventDefault()
+		
 		var userInput = {
 			email: eventObj.target.email.value,
 			password: eventObj.target.password.value,
@@ -38,7 +39,7 @@ var Register = React.createClass({
 					</div>
 					<div className="form-group" > 
 						<label htmlFor="pwd">Password:</label>
-    					<input type="password" className="form-control" id="pwd" />
+    					<input type="password" name="password" className="form-control" id="pwd" />
 					</div>
 					<div className="form-group">
 						<label htmlFor="username">User Name:</label>
@@ -73,7 +74,7 @@ var Login = React.createClass({
 					</div>
 					<div className="form-group">
 						<label htmlFor="pwd"> Password: </label>
-						<input type="password" 	className= "form-control" id= "pwd"name="password" placeholder="enter your password" />
+						<input type="password" 	className="form-control" id="pwd" name="password" placeholder="enter your password" />
 					</div>
 					<button type="submit" className="btn btn-default">Log In</button>
 				</form>
