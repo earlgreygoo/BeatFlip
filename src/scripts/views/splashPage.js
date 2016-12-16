@@ -24,7 +24,7 @@ const SplashPage = React.createClass({
 			flipId: 'flip'
 		})
 
-		setTimeout(()=>location.hash ="#home",1000)
+		setTimeout(()=>location.hash ="#home",2000)
 	},
 
 	render: function() {
@@ -33,10 +33,12 @@ const SplashPage = React.createClass({
 
 			<div className='splash'>
 				<img src='../images/beat-lab.jpg' />
-				<h2 className="beat"  id={this.state.beatId}> Beat </h2>
-				<h2 className="slash"  > / </h2>
-				<h2 className="flip" id={this.state.flipId} > Flip </h2>
-				<button onClick={this._takeMeHome}> ENTER </button> 
+				<div className="logo" >
+					<h2 className="beat"  id={this.state.beatId}> beat </h2>
+					<h2 className="slash"  > / </h2>
+					<h2 className="flip" id={this.state.flipId} > flip </h2>
+				</div>
+				<button onClick={this._takeMeHome}> enter </button> 
 			</div>
 
 			)

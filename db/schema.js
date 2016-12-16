@@ -21,7 +21,7 @@ const usersSchema = new mongoose.Schema({
 
 const challengeSchema = new mongoose.Schema({
 	title:     {type:String, required:true},
-	imgUrl:    {type:String, required:false},
+	style:    {type:String, required:false},
 	userId:    {type: String, required: true},
 	createdAt: {type:Date, default:Date.now},
   details:   {type:String, required:false},

@@ -11,7 +11,8 @@ const Images = {
 	orng: '../images/cassetteorange.png',
 	grn: '../images/cassettegrn.png',
 	blu: '../images/cassetteblue.png',
-	wheel: '../images/spinningwheel.gif'
+	wheel: '../images/spinningwheel.gif',
+
 
 
 }
@@ -36,6 +37,7 @@ const Cassette = React.createClass({
 
 
 	_togglePlay: function(){
+		console.log(this.props.model.attributes)
 
 		if(this.state.widget) {
 			var id = "#" + this.props.model.attributes._id
@@ -114,7 +116,7 @@ const Cassette = React.createClass({
 
 	render: function() {
 
-		console.log(this.props)
+		console.log(this.props.model.attributes)
 		var track = this.props.model.attributes
 		var trackId = track._id 
 
@@ -133,7 +135,7 @@ const Cassette = React.createClass({
 				</div> 
 
 				<div className="track-controll">
-					<i className="fa fa-soundcloud" aria-hidden="true"></i>
+					<a href={this.props.model.attributes.link +"'"}><i className="fa fa-soundcloud" aria-hidden="true"></i> </a>
 
 					{this.state.songPlaying ? (
 					<i className="fa fa-pause-circle-o" aria-hidden="true" onClick={this._togglePlay}></i>) :

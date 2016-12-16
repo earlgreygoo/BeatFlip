@@ -124,8 +124,9 @@ const ChallengeDetails = React.createClass({
 	render: function() {
 		//this._winCheck()
 		var challenge = this.props.model
+		console.log(challenge)
 		return (
-			<div className='details-container well'>
+			<div className={challenge.attributes.style} id="deets">
 				<h1> {challenge.get('title')} </h1>
 				<p> {challenge.get('details')} </p>
 

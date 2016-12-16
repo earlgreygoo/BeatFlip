@@ -1,3 +1,17 @@
+
+$primary-color: #B7D5E3;
+$secondary-color: #FBC1CD;
+
+
+
+
+ // font for denim 
+
+
+$main-font: 'Raleway', sans-serif;
+
+
+
 * {
 	font-family: Helvetica, Arial, sans-serif;
 	box-sizing: border-box;
@@ -10,12 +24,22 @@ body {
 	background: linear-gradient(to bottom right, lightblue, pink) fixed;
 
 
+
+
+
+
 .container{
 	    width: 100%;
    		margin: 0;
     	padding: 0;
 }
 
+
+
+
+.logo{
+	font-family: $main-font;
+}
 
 .btn-group{
 	    margin-top: 5vh;
@@ -24,35 +48,88 @@ body {
 
 
 .headerUser {
-	right:0;
-	position: absolute;
+	
+    right: 10vw;
+    top: 0;
+    position: absolute;
 
-	h5 {
-		text-align: center;
+	.logout {
+		color: $primary-color;
+		margin-top: 0;
+		transition: color .35s ease;
+
 	}
 
-	h3 {
-		margin-top: 1vh;
+	.logout:hover {
+		cursor: pointer;
+		color: $secondary-color;
 	}
+
+	.userName {
+		    margin-top: 1vh;
+    		font-size: x-large;
+    		font-family: $main-font;
+    		transition: color .35s ease;
+    	}
+    .userName:hover {
+    	cursor: pointer;
+    	color: $secondary-color;
+    }
 }
 
+//SPLASH PAGE //
+
 .splash {
-	width: 100%;
 	height: 100%;
+	text-align: center;
+
+
+	.logo {
+
+		    position: fixed;
+    		top: 30%;
+    		left: 0;
+    		right: 0;
+    		margin-left: auto;
+    		margin-right: auto;
+
+
+
+	}
 
 	img {
-		width: 100%;
-		height: 100%;
-		opacity: .5;
-		z-index: -1;
-		position: fixed;
+		 width: 50%;
+    	height: 100%;
+    	left: 0;
+    	transform: scale(3,3);
+    	opacity: .4;
+    	z-index: -1;
+    	position: fixed;
 	}
 
 	h2 {
+		font-size: 70px;
 		display: inline-block;
 		transition: all 1s ease;
+		font-family: 'Raleway', sans-serif;
 
 	}
+
+	button {
+
+		width: 200px;
+		height: 100px;
+		font-size: 40px;
+		border: 3px solid black;
+		font-family: 'Raleway', sans-serif;
+		border-radius: 70%;
+		background: none;
+		position: fixed;
+		top: 50%;
+		left: 50%; 
+   		transform: translate(-50%, 0);
+	}
+	button:focus {outline:0;}
 
 	#pulse {
 		
@@ -73,6 +150,7 @@ body {
 .challenges-container {
 
 		margin: 6vw;
+		padding: 0 10vw;
 
 		h4{	
 			font-size: 5vw;
@@ -80,21 +158,7 @@ body {
 			text-shadow: 2px 2px 8px grey;
 		}
 
-		.well {
-		background-color: rgba(245,245,245,.3);
-		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-		transition: 0.3s;
-
-			h1 {
-				text-align: center;
-			}
-
-		}	
-
-		.well:hover {
-			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
-			 cursor: pointer;
-		}	
+	
 
 	}
 
@@ -108,6 +172,42 @@ body {
 		height: 4rem;
 	}
 
+
+
+
+.challenge-page {
+
+	padding: 7vh;
+
+
+	
+	}
+	#deets {
+		text-align: center;
+		h1 {
+		font-family: 'Raleway', sans-serif;
+		}
+
+
+		p {
+			color: white; 
+		}
+
+		h3 {
+			font-family: 'Raleway', sans-serif;
+			color: $secondary-color
+		}
+
+	.wornYellow{
+		h3 {
+			color: $primary-color
+		}
+	}
+
+
+
+
+}
 
 	.submission-container {
 		position: fixed;
@@ -192,13 +292,13 @@ body {
 
 .track-controll {
 	position: absolute;
-	bottom: 0;
+	bottom: 12vh;
 	width: 100%;
 	text-align: center;
 
 	i{
 		width: 30%;
-		font-size: 6vw;
+		font-size: 4vw;
 		color: white;
 	}
 
@@ -228,27 +328,173 @@ body {
 // tape styles 
 
 
+	.well {
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.3s;
+
+			h1 {
+				text-align: center;
+			}
+
+		}	
+
+		.well:hover {
+			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+			 cursor: pointer;
+		}	
 
 
+
+
+ 
 
 
 .wornYellow {
-			background: linear-gradient(to right, rgba(252,252,234,1) 0%, rgba(254,216,134,1) 17%, rgba(255,193,69,1) 28%);
+
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: 0.3s;
+			    min-height: 20px;
+    			border-radius: 6px;
+    			margin-bottom: 20px;
+    			border: 5px solid #e3e3e3;
+    			background: linear-gradient(to right, rgba(252,252,234,1) 0%, rgba(254,216,134,1) 17%, rgba(255,193,69,1) 28%);
+				position: relative;
+			
+
+
+    			img {
+    				position: absolute;
+    				width: 100%;
+    				height: 100%;
+    				margin: 0;
+    				opacity: .2;
+    				}
+			.challengeTitle {
+				font-family: 'Raleway', sans-serif;
+			}
+
+
 		}
+
+
+
+
+.wornYellow:hover {
+			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+			 cursor: pointer;
+
+		}	
 
 
 
 .denim {
 			background: linear-gradient(45deg, rgba(165,178,222,1) 0%, rgba(129,164,205,1) 28%, rgba(129,164,205,1) 33%);
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: 0.3s;
+			    min-height: 20px;
+    			border-radius: 6px;
+    			margin-bottom: 20px;
+    			border: 5px solid #e3e3e3;
+    			position: relative;
+
+    			img {
+    				position: absolute;
+    				width: 100%;
+    				height: 100%;
+    				margin: 0;
+    				opacity: .2;
+    				}
+
+
+
+    			.challengeTitle{
+    				font-family: 'Raleway', sans-serif;
+    			}
+				
+
+
 		}
 
 
-.purp: {
-			background: linear-gradient(to bottom, rgba(163,56,133,1) 0%, rgba(125,52,103,1) 33%, rgba(104,50,87,1) 51%);
+.denim:hover {
+			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+			 cursor: pointer;
+
+		}
+
+
+
+.purp {
+			background: linear-gradient(45deg, #f1b5cb 0%, #f1b5cb 13%, #e88eed 79%, #e88eed 100%);
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: 0.3s;
+			    min-height: 20px;
+    			border-radius: 6px;
+    			margin-bottom: 20px;
+    			border: 1px solid #e3e3e3;
+
+
+    			position: relative;
+
+
+    			.challengeTitle{
+    				font-family: 'Raleway', sans-serif;
+    				color: white;
+    			}
+
+    			img {
+    				position: absolute;
+    				width: 100%;
+    				height: 100%;
+    				margin: 0;
+    				opacity: .2;
+    				}
+
+		}
+
+
+.purp:hover {
+			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+			 cursor: pointer;
+
 		}
 
 .green {
+
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: 0.3s;
+			    min-height: 20px;
+    			border-radius: 6px;
+    			margin-bottom: 20px;
+    			border: 1px solid #e3e3e3;
 			background: linear-gradient(to right, rgba(137,158,139,1) 0%, rgba(123,166,126,1) 33%, rgba(115,171,119,1) 51%);
+		
+			position: relative;
+
+    			img {
+    				position: absolute;
+    				width: 100%;
+    				height: 100%;
+    				margin: 0;
+    				opacity: .2;
+    				}
+
+
+    			.challengeTitle{
+    				font-family: 'Raleway', sans-serif;
+    			}
+
+
+
 		}
 
+.green:hover {
+			 box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+			 cursor: pointer;
 
+		}
+
+#deets:hover {
+			cursor: auto;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}	

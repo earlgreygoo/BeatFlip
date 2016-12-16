@@ -62,16 +62,22 @@ const Challenge = React.createClass({
 
 
 
+
+
+
 	
 	render: function() {
 		var thisChallenge = this.props.model.attributes
 		console.log("rendering challenge", this.props)
 
 		return (
-			<div className="well well-lg .wornYellow" onClick={()=> location.hash = "challenges/" + thisChallenge._id}>
-				<h1> {thisChallenge.title} </h1> 
+			
+			<div className={thisChallenge.style} onClick={()=> location.hash = "challenges/" + thisChallenge._id}>
+				<img src={'../images/paperBack.jpg'} className="paper" />
+				<h1 className='challengeTitle'> {thisChallenge.title} </h1> 
 
 			</div>
+		
 		)
 	}
 })
