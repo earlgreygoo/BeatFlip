@@ -25,6 +25,7 @@ const challengeSchema = new mongoose.Schema({
 	userId:    {type: String, required: true},
 	createdAt: {type:Date, default:Date.now},
   details:   {type:String, required:false},
+  resources: {type:String, required: true,},
   deadline:  {type:Date, required: false},
   prize:     {type:String, required: false},
   isActive:  {type: Boolean, default: true}
@@ -38,10 +39,9 @@ const trackSchema = new mongoose.Schema({
   title:       {type:String, required: true},
   link:        {type: String, required: true},
   user:        {type: String, required: true},
-  description: {type: String, required: false},
   challengeId: {type: String, required: true},
   votes:       {type: Number, default: 1},
-  tapeRoute:   {type: String, default: ""}
+  tapeColor:   {type: String, default: ""}
 
 })
 

@@ -7,10 +7,12 @@ import LoginView from './views/loginView'
 import ChallengeView from './views/challengeView'
 import UserView from './views/userView'
 import AdminView from './views/adminView'
+import SplashPage from './views/splashPage'
 
 
 const app = function() {
 
+	console.log('hi')
 
 	const Router = Backbone.Router.extend({
 		routes: {
@@ -35,7 +37,7 @@ const app = function() {
 			ReactDOM.render(<UserView/>, document.querySelector(".container"))
 		},
 		handleDefault: function(){
-			location.hash = "home"
+			ReactDOM.render(<SplashPage />, document.querySelector(".container"))
 		},
 		handleAdmin: function() {
 			ReactDOM.render(<AdminView/>, document.querySelector(".container"))

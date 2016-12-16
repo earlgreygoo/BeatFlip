@@ -56,11 +56,13 @@ const ChallengeView = React.createClass({
 
 	render: function() {
 		return (
-			<div className='challenge-page'>
+			<div className='challenge-view'>
 				<Header />
-				<ChallengeDetails model={this.state.currentChallenge} /> 
-				<Submit visible={this.state.submissionWindowVisible} id={this.props.id} />
-				<Tracks collection={this.state.currentTracks} e />
+				<div className='challenge-page'>
+					<ChallengeDetails model={this.state.currentChallenge} /> 
+					<Submit visible={this.state.submissionWindowVisible} id={this.props.id} />
+					<Tracks collection={this.state.currentTracks} e />
+				</div>
 
 			</div>
 			)
@@ -179,16 +181,22 @@ const Submit = React.createClass({
 			}
 		},
 
-		_submitTrack: function(eventObj) {
+		_submitTrack: function(eventObj) {	
 
+
+
+			var test = eventObj.target.URL.value
+			var woo = test.split("src=")[1]
+			var ok = woo.split("&")[0]
+			alert(eventObj.target.optradio.value)
 
 			var trackInfo = {
 				title:    		eventObj.target.title.value,
-				userName:       user.getUser().attributes.username,
-				link:     		eventObj.target.URL.value,
-				description:    (eventObj.target.description.value ? eventObj.target.description.value : ""),
+				user:       User.getCurrentUser().attributes.username,
+				link:     		ok,
 				challengeId:    this.props.id,
-				votes:          0
+				votes:          0,
+				tapeColor: eventObj.target.optradio.value
 			}
 			ACTIONS.submitTrack(trackInfo,this.props.id)
 
@@ -221,15 +229,21 @@ const Submit = React.createClass({
 						</div>
 						<div className="form-group">
 							<label htmlFor="URL"> Track Link </label>
-							<input type="text" name="URL" className="form-control" id="URL" placeholder="track link" />
+							<input type="text" name="URL" className="form-control" id="URL" placeholder="copy embed code from soundcloud" />
 						</div>
+
 						<div className="form-group">
-							<label htmlFor="description"> Description </label>
-							<input type="description" name="description" className="form-control" id="description" placeholder="description (optional)" />
+							<label htmlFor="optradio"> Choose a color: </label>
+							<label className="radio-inline"><input type="radio" name="optradio" value="grn"/>Green </label>
+							<label className="radio-inline"><input type="radio" name="optradio" value="blu"/>Blue </label>
+							<label className="radio-inline"><input type="radio" name="optradio" value="blk"/>Black </label>
+							<label className="radio-inline"><input type="radio" name="optradio" value="orng"/>Orange </label>
 						</div>
+
 						<button className="btn btn-default" type="submit"> Submit </button>
+						<div className="btn btn-default" onClick={this._toggleSubmit} > Cancel </div>
 					</form>
-					<button className="btn btn-default" onClick={this._toggleSubmit} > Cancel </button>
+					
 				</div>
 				
 				)
